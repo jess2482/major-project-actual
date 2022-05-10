@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class levelLoader : MonoBehaviour
 {
-    //attached to empty LevelLoader object
+    //script attached to empty LevelLoader object
+    int sceneToLoad = 1;
 
     public Animator transition;
     float transitionDelay = 1.3f;
@@ -28,7 +29,7 @@ public class levelLoader : MonoBehaviour
     public void LoadMainScene()
     {
         //changes scene to 'MainScene' using Build Index
-        StartCoroutine(LoadLevel(1));
+        StartCoroutine(LoadLevel(sceneToLoad));
     }
 
     //coroutine -> stops scene change from happening immediately, so transition can be shown

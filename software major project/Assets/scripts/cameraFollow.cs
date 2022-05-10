@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class cameraFollow : MonoBehaviour
 {
+    //script attached to the Main Camera
+
     GameObject thePlayer;
     private Transform playerTransform;
     public float offset=0f;
