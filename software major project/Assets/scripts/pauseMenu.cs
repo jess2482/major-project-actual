@@ -27,11 +27,11 @@ public class pauseMenu : MonoBehaviour
         {
             if (gameIsPaused == true)
             {
-                resumeGame();
+                ResumeGame();
             }
             else
             {
-                pauseGame();
+                PauseGame();
             }
         }
 
@@ -39,7 +39,7 @@ public class pauseMenu : MonoBehaviour
         {
             if (gameIsPaused == true)
             {
-                restartScene();
+                RestartScene();
             }
         }
 
@@ -47,17 +47,17 @@ public class pauseMenu : MonoBehaviour
         {
             if (instructionsOpen == true)
             {
-                pauseGame();
+                PauseGame();
             }
             else
             {
-                showInstructions();
+                ShowInstructions();
             }
         }
     }
 
     //closes the pause menu
-    void resumeGame()
+    void ResumeGame()
     {
         Debug.Log("resuming game");
         pauseMenuUI.SetActive(false);
@@ -68,7 +68,7 @@ public class pauseMenu : MonoBehaviour
     }
 
     //opens the pause menu
-    void pauseGame()
+    void PauseGame()
     {
         Debug.Log("pausing game");
         pauseMenuUI.SetActive(true);
@@ -81,13 +81,13 @@ public class pauseMenu : MonoBehaviour
         instructionsOpen = false;
     }
 
-    void restartScene()
+    void RestartScene()
     {
         Debug.Log("loading game");
         SceneManager.LoadScene(currentScene);
     }
 
-    void showInstructions()
+    void ShowInstructions()
     {
         pauseMenuUI.SetActive(false);
         instructionsUI.SetActive(true);
