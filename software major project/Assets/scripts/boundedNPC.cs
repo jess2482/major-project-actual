@@ -10,6 +10,7 @@ public class boundedNPC : MonoBehaviour
     private Animator npcAnim; //NPC's animator
     //public Collider2D boundsCollider;
     int direction = 1;
+    int tempDirection;
 
     private void Start()
     {
@@ -26,26 +27,12 @@ public class boundedNPC : MonoBehaviour
     void Move()
     {
         npcRigidbody.MovePosition(transform.position + directionVector * speed * Time.deltaTime);
-        
-        /*Vector3 temp = transform.position + directionVector * speed * Time.deltaTime;
-
-        //checks whether boundary has the point in it that the NPC 'wants' to move to
-        //so checking whether the NPC is about to move outside the boundary + changing direction if it is
-        if (boundsCollider.bounds.Contains(temp))
-        {
-            npcRigidbody.MovePosition(temp);
-        }
-        else
-        {
-            ChangeDirection();
-        }*/
     }
 
     void ChangeDirection()
     {
         //int direction = Random.Range(0, 2);
         direction = direction * -1;
-        Debug.Log("changing direction...");
 
         //could be done using if/else statements, but this will help if you add left/right later
         switch (direction)
@@ -64,19 +51,17 @@ public class boundedNPC : MonoBehaviour
                 break; //ensures there's always a way for the script to exit
         }
 
-        //UpdateAnimation();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("collision detected");
         if (collision.gameObject.tag == "npcBound")
         {
-            Debug.Log("it's a boundary");
             ChangeDirection();
         }
         if (collision.gameObject.tag == "Player")
         {
+            tempDirection = direction;
             npcAnim.Play("walkDown");
             npcRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
         }
@@ -86,16 +71,10 @@ public class boundedNPC : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            direction = 1;
+            direction = tempDirection * -1;
             ChangeDirection();
             npcRigidbody.constraints = RigidbodyConstraints2D.None;
             npcRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
     }
-
-    /*void UpdateAnimation()
-    {
-        npcAnim.SetFloat("moveX", directionVector.x);
-        npcAnim.SetFloat("moveY", directionVector.y);
-    }*/
 }

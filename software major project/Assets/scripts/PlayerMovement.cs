@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     float moveSpeed = 4.5f;
     public Rigidbody2D rbody;
     public Animator animator;
+    public GameObject instructionsImage;
 
     //can store x and y values
     Vector2 movement;
@@ -24,6 +25,12 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("horizontal", movement.x);
         animator.SetFloat("vertical", movement.y);
         animator.SetFloat("speed", movement.sqrMagnitude);
+
+        //disables the 'move with the arrow keys' instruction once the player starts moving
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            Destroy(instructionsImage);
+        }
     }
 
 
@@ -31,5 +38,6 @@ public class PlayerMovement : MonoBehaviour
     {
         //moves rigidbody to new position + makes it collide with anything in the way -> moves to current position plus movement
         rbody.MovePosition(rbody.position + movement * moveSpeed * Time.fixedDeltaTime);
+    
     }
 }
