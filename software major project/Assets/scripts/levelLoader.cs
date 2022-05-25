@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class levelLoader : MonoBehaviour
 {
-    //script attached to empty LevelLoader object
-    int sceneToLoad = 1;
+    int sceneToLoad;
 
     public Animator transition;
     float transitionDelay = 1.3f;
@@ -14,13 +13,28 @@ public class levelLoader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //checks whether the player is still in the opening scene
+        //for transition FROM opening screen TO main scene
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
+            sceneToLoad = 1;
             //then loads the new scene if space bar is pressed
             if (Input.GetKeyDown("space"))
             {
                 Debug.Log("space key pressed");
+                LoadMainScene();
+            }
+        }
+
+        //for transition FROM maze minigame TO main scene
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            sceneToLoad = 1;
+            
+            //then loads the new scene if space bar is pressed
+            if (Input.GetKeyDown("space"))
+            {
+                Debug.Log("space key pressed");
+                FindObjectOfType<mazeMinigameManager>().DataTransfer();
                 LoadMainScene();
             }
         }
