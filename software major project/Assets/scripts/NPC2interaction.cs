@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class playerInteraction : MonoBehaviour
+public class NPC2interaction : MonoBehaviour
 {
-    //NOT USING THIS SCRIPT ANYMORE
-
     public Image interactionNotif;
     public dialogue conversation;
     bool interaction;
 
+    //essentially a restricted list of game dialogue
+    private Queue<string> NPC2sentences;
+
     void Start()
     {
+        NPC2sentences = new Queue<string>();
+
         //makes the alert disappear when the game begins
         interactionNotif.gameObject.SetActive(false);
     }
@@ -22,7 +25,7 @@ public class playerInteraction : MonoBehaviour
         //if the player collides with the object, it triggers the dialogueManager
         if (interaction == true)
         {
-            //FindObjectOfType<dialogueManager>().startDialogue(conversation);
+            FindObjectOfType<dialogueManager>().startDialogue(conversation, NPC2sentences);
         }
     }
 

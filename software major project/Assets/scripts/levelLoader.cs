@@ -9,7 +9,11 @@ public class levelLoader : MonoBehaviour
 
     public Animator transition;
     float transitionDelay = 1.3f;
-    
+
+    public GameObject moveCheckUI;
+    bool checkingMovement = false; //set to true when the player is being asked whether to move or not
+    Collision2D boxCollision;
+
     // Update is called once per frame
     void Update()
     {
@@ -21,7 +25,7 @@ public class levelLoader : MonoBehaviour
             if (Input.GetKeyDown("space"))
             {
                 Debug.Log("space key pressed");
-                LoadMainScene();
+                LoadScene();
             }
         }
 
@@ -35,12 +39,48 @@ public class levelLoader : MonoBehaviour
             {
                 Debug.Log("space key pressed");
                 FindObjectOfType<mazeMinigameManager>().DataTransfer();
-                LoadMainScene();
+                LoadScene();
+            }
+        }
+
+        if (checkingMovement == true)
+        {
+            //MAY BE A LATER ISSUE HERE with never setting checkingMovement back to false, but should be ok since scene changes
+            if (Input.GetKeyDown("space"))
+            {
+                Time.timeScale = 1f;
+                LoadScene();
+            }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Time.timeScale = 1f;
+                moveCheckUI.SetActive(false);
+                checkingMovement = false;
             }
         }
     }
 
-    public void LoadMainScene()
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        boxCollision = collision;
+
+        //for transitions FROM main scene
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            //transition TO maze minigame
+            if (boxCollision.gameObject.tag == "mazeMinigameBox")
+            {
+                sceneToLoad = 2;
+
+                //checks whether player wants to move to minigame
+                moveCheckUI.SetActive(true);
+                Time.timeScale = 0f;
+                checkingMovement = true;
+            }
+        }
+    }
+
+    public void LoadScene()
     {
         //changes scene to 'MainScene' using Build Index
         StartCoroutine(LoadLevel(sceneToLoad));

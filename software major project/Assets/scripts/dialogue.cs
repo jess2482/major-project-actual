@@ -10,5 +10,5 @@ public class dialogue
     public string name; //name of NPC
 
     [TextArea(3, 10)]
-    public string[] sentences;
+    public string[] characterSentences;
 }
