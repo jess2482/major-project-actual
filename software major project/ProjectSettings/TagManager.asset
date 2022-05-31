@@ -7,6 +7,7 @@ TagManager:
   - npcBound
   - dataTransfer
   - mazeMinigameBox
+  - item
   layers:
   - Default
   - TransparentFX

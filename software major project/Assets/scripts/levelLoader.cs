@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class levelLoader : MonoBehaviour
 {
     int sceneToLoad;
-
     public Animator transition;
     float transitionDelay = 1.3f;
 
@@ -14,6 +13,9 @@ public class levelLoader : MonoBehaviour
     bool checkingMovement = false; //set to true when the player is being asked whether to move or not
     Collision2D boxCollision;
 
+    public bool gameWon = false;
+
+    
     // Update is called once per frame
     void Update()
     {
@@ -29,20 +31,7 @@ public class levelLoader : MonoBehaviour
             }
         }
 
-        //for transition FROM maze minigame TO main scene
-        if (SceneManager.GetActiveScene().buildIndex == 2)
-        {
-            sceneToLoad = 1;
-            
-            //then loads the new scene if space bar is pressed
-            if (Input.GetKeyDown("space"))
-            {
-                Debug.Log("space key pressed");
-                FindObjectOfType<mazeMinigameManager>().DataTransfer();
-                LoadScene();
-            }
-        }
-
+        //for transition FROM main scene TO any minigame
         if (checkingMovement == true)
         {
             //MAY BE A LATER ISSUE HERE with never setting checkingMovement back to false, but should be ok since scene changes
@@ -58,8 +47,24 @@ public class levelLoader : MonoBehaviour
                 checkingMovement = false;
             }
         }
-    }
 
+        //for transition FROM maze minigame TO main scene
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            sceneToLoad = 1;
+
+            //then loads the new scene if space bar is pressed once the game is over
+            if (Input.GetKeyDown("space"))
+            {
+                if (gameWon == true)
+                {
+                    FindObjectOfType<mazeMinigameManager>().DataTransfer();
+                    LoadScene();
+                }
+            }
+        }
+    }
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         boxCollision = collision;
