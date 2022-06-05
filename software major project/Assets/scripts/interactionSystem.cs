@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class interactionSystem : MonoBehaviour
 {
-    bool itemDetected=false;
+    //script attached to playerCharacter in MazeMinigame
+
+    bool itemDetected =false;
     public GameObject detectedItem;
 
 

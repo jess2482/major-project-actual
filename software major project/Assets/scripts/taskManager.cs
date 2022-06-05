@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class taskManager : MonoBehaviour
 {
+    //script attached to instructionScreen in MazeMinigame
+
     public GameObject taskCanvas;
     public GameObject instructionScreen;
     public GameObject winScreen;

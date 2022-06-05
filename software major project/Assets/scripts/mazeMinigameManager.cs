@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class mazeMinigameManager : MonoBehaviour
 {
+    //script attached to DataTransfer object (currently just in MazeMinigame)
+
     //static ensures that regardless of how many copies of this script there are, there is only one copy of this variable
     static mazeMinigameManager instance;
 

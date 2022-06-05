@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class cameraFollow : MonoBehaviour
 {
-    //script attached to the Main Camera
+    //script attached to the Main Camera in every scene
 
     GameObject thePlayer;
     private Transform playerTransform;

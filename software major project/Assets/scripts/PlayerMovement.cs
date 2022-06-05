@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //script attached to player character
+    //script attached to playerCharacter in every scene
 
     float moveSpeed = 4.5f;
     public Rigidbody2D rbody;

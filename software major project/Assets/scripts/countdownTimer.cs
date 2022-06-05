@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class countdownTimer : MonoBehaviour
 {
+    //script attached to timerText in MazeMinigame
 
     public float timeLeft = 40;
     public Text timeText;

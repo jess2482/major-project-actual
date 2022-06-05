@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class dialogueManager : MonoBehaviour
 {
+    //script attached to DialogueManager in MainScene
 
     public Text nameText;
     public Text dialogueText;

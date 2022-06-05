@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class itemSetup : MonoBehaviour
 {
+    //scripta attached to any item in MazeMinigame
+
     public enum itemType { NONE, coin, pumpkin, strawberry, diamond}
     public itemType type;
 

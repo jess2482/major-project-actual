@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class inventorySystem : MonoBehaviour
 {
+    //script attached to playerCharacter in MazeMinigame
+
     public List<GameObject> collectedItems = new List<GameObject>(); //list of items picked up
 
     public GameObject inventoryUI; //empty panel containing the inventory images

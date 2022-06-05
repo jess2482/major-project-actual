@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class boundedNPC : MonoBehaviour
 {
+    //script attached to npc1 in MainScene
+
     private Vector3 directionVector; //NPC's position
     public float speed;
     private Rigidbody2D npcRigidbody; //NPC's Rigidbody

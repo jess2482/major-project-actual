@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class pauseMenu : MonoBehaviour
 {
+    //script attached to pauseMenu in MazeMinigame
+
     public static bool gameIsPaused = false;
     public static bool instructionsOpen = false;
     int currentScene = 1;

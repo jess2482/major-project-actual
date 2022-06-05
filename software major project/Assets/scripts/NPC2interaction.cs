@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class NPC2interaction : MonoBehaviour
 {
+    //script attached to npc2 in MainScene
+
     public Image interactionNotif;
     public dialogue conversation;
     bool interaction;
