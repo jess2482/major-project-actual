@@ -16,7 +16,7 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - stopMovement
   - 
   - 
   - 
@@ -45,8 +45,14 @@ TagManager:
   - name: background
     uniqueID: 35868877
     locked: 0
+  - name: gridTilemap
+    uniqueID: 257959631
+    locked: 0
   - name: characters
     uniqueID: 2014709415
+    locked: 0
+  - name: items
+    uniqueID: 4184866531
     locked: 0
   - name: Default
     uniqueID: 0

@@ -771,7 +771,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[game name]'
+  m_Text: '[festival fun]'
 --- !u!222 &1321389855
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -889,6 +889,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transition: {fileID: 958282416}
+  moveCheckUI: {fileID: 0}
+  gameWon: 0
 --- !u!4 &2117940252
 Transform:
   m_ObjectHideFlags: 0
