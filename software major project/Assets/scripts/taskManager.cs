@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class taskManager : MonoBehaviour
 {
-    //script attached to instructionScreen in MazeMinigame
+    //script attached to instructionScreen in MazeMinigame and RainMinigame
 
     public GameObject taskCanvas;
     public GameObject instructionScreen;
@@ -14,6 +14,7 @@ public class taskManager : MonoBehaviour
     Rigidbody2D playerRigidbody;
     public bool loseGame = false;
     public bool winGame = false;
+    public bool notStartedYet = true;
 
     
     void Start()
@@ -22,8 +23,12 @@ public class taskManager : MonoBehaviour
         taskCanvas.SetActive(false);
         instructionScreen.SetActive(true);
         winScreen.SetActive(false);
-        loseScreen.SetActive(false);
-        //stop player from moving until the game starts
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            loseScreen.SetActive(false);
+        }
+
+        //stops player from moving until the game starts
         playerRigidbody = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
         playerRigidbody.constraints = RigidbodyConstraints2D.FreezePosition;
     }
@@ -52,6 +57,8 @@ public class taskManager : MonoBehaviour
     //before the game has started, freezes the player's position and shows the initial instruction screen
     void startGame()
     {
+        Debug.Log("game starting...");
+        notStartedYet = false;
         instructionScreen.SetActive(false);
         taskCanvas.SetActive(true);
         playerRigidbody.constraints = RigidbodyConstraints2D.None;
@@ -62,7 +69,8 @@ public class taskManager : MonoBehaviour
     //once the game has been won, freezes the player's position and shows the winning screen
     void gameWon()
     {
-        FindObjectOfType<levelLoader>().gameWon = true;
+        Debug.Log("you won!");
+        FindObjectOfType<levelLoader>().mazeGameWon = true;
         playerRigidbody.constraints = RigidbodyConstraints2D.FreezePosition;
         winScreen.SetActive(true);
         taskCanvas.SetActive(false);
@@ -72,6 +80,7 @@ public class taskManager : MonoBehaviour
     //once the game has been lost, freezes the player's position and shows the losing screen, with an option to restart
     void gameLost()
     {
+        Debug.Log("you lost :(");
         playerRigidbody.constraints = RigidbodyConstraints2D.FreezePosition;
         loseScreen.SetActive(true);
         taskCanvas.SetActive(false);

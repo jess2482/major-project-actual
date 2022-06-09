@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MazeMinigame.unity
     guid: ccaac7538d6336c4385a3b150aef5a84
+  - enabled: 1
+    path: Assets/Scenes/RainMinigame.unity
+    guid: 49e4d6721da29d649bd9776e7cb42609
   m_configObjects: {}

@@ -27,10 +27,15 @@ public class gridPlayerMovement : MonoBehaviour
         //moves the player character to the point it's meant to go to
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed*Time.deltaTime);
 
-        //ensures that a new grid destination can only be inputted if the character has already reached its destination
-        if(Vector3.Distance(transform.position, movePoint.position) <= 0.01f)
+        /*ensures that a new grid destination can only be inputted if:
+            - the initial instruction screen is no longer showing
+            - the character has already reached its destination*/
+        if (FindObjectOfType<taskManager>().notStartedYet == false) //.
         {
-            GetMovementInput();
+            if (Vector3.Distance(transform.position, movePoint.position) <= 0.01f)
+            {
+                GetMovementInput();
+            }
         }
 
     }

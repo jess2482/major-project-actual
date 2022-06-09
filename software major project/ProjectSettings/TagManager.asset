@@ -8,6 +8,7 @@ TagManager:
   - dataTransfer
   - mazeMinigameBox
   - item
+  - rainMinigameBox
   layers:
   - Default
   - TransparentFX

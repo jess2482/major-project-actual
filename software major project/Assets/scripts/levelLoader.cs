@@ -15,9 +15,9 @@ public class levelLoader : MonoBehaviour
     bool checkingMovement = false; //set to true when the player is being asked whether to move or not
     Collision2D boxCollision;
 
-    public bool gameWon = false;
+    public bool mazeGameWon = false;
+    public bool rainGameWon = false;
 
-    
     // Update is called once per frame
     void Update()
     {
@@ -58,9 +58,25 @@ public class levelLoader : MonoBehaviour
             //then loads the new scene if space bar is pressed once the game is over
             if (Input.GetKeyDown("space"))
             {
-                if (gameWon == true)
+                if (mazeGameWon == true)
                 {
                     FindObjectOfType<mazeMinigameManager>().DataTransfer();
+                    LoadScene();
+                }
+            }
+        }
+
+        //for transition FROM rain minigame TO main scene
+        if (SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            sceneToLoad = 1;
+
+            //then loads the new scene if space bar is pressed once the game is over
+            if (Input.GetKeyDown("space"))
+            {
+                if (rainGameWon == true)
+                {
+                    //FindObjectOfType<rainMinigameManager>().DataTransfer();
                     LoadScene();
                 }
             }
@@ -84,12 +100,23 @@ public class levelLoader : MonoBehaviour
                 Time.timeScale = 0f;
                 checkingMovement = true;
             }
+
+            //transition TO rain minigame
+            if (boxCollision.gameObject.tag == "rainMinigameBox")
+            {
+                sceneToLoad = 3;
+
+                //checks whether player wants to move to minigame
+                moveCheckUI.SetActive(true);
+                Time.timeScale = 0f;
+                checkingMovement = true;
+            }
         }
     }
 
     public void LoadScene()
     {
-        //changes scene to 'MainScene' using Build Index
+        //changes scene to the desired scene using Build Index
         StartCoroutine(LoadLevel(sceneToLoad));
     }
 
