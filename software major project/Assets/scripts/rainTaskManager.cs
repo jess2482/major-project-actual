@@ -3,19 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class taskManager : MonoBehaviour
+public class rainTaskManager : MonoBehaviour
 {
-    //NOT USING THIS SCRIPT ANYMORE
-
     public GameObject taskCanvas;
     public GameObject instructionScreen;
     public GameObject winScreen;
-    public GameObject loseScreen;
     Rigidbody2D playerRigidbody;
-    public bool loseGame = false;
     public bool winGame = false;
     public bool notStartedYet = true;
-
     
     void Start()
     {
@@ -23,17 +18,14 @@ public class taskManager : MonoBehaviour
         taskCanvas.SetActive(false);
         instructionScreen.SetActive(true);
         winScreen.SetActive(false);
-        if (SceneManager.GetActiveScene().buildIndex == 2)
-        {
-            loseScreen.SetActive(false);
-        }
 
-        //stops player from moving until the game starts
+        //stops player + raindrop from moving until the game starts
         playerRigidbody = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
         playerRigidbody.constraints = RigidbodyConstraints2D.FreezePosition;
+        
     }
 
-    
+
     //controls the game's status (not started / won / lost)
     void Update()
     {
@@ -42,11 +34,7 @@ public class taskManager : MonoBehaviour
             startGame();
         }
 
-        if (loseGame == true)
-        {
-            gameLost();
-        }
-        else if (winGame == true)
+        if (winGame == true)
         {
             gameWon();
         }
@@ -70,26 +58,10 @@ public class taskManager : MonoBehaviour
     void gameWon()
     {
         Debug.Log("you won!");
-        FindObjectOfType<levelLoader>().mazeGameWon = true;
+        FindObjectOfType<levelLoader>().rainGameWon = true;
         playerRigidbody.constraints = RigidbodyConstraints2D.FreezePosition;
         winScreen.SetActive(true);
         taskCanvas.SetActive(false);
     }
 
-
-    //once the game has been lost, freezes the player's position and shows the losing screen, with an option to restart
-    void gameLost()
-    {
-        Debug.Log("you lost :(");
-        Time.timeScale = 0f;
-        playerRigidbody.constraints = RigidbodyConstraints2D.FreezePosition;
-        loseScreen.SetActive(true);
-        taskCanvas.SetActive(false);
-
-        if (Input.GetKeyDown("space"))
-        {
-            //reloads the current scene, to restart the game
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-    }
 }

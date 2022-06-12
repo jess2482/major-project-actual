@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class taskManager : MonoBehaviour
+public class mazeTaskManager : MonoBehaviour
 {
-    //NOT USING THIS SCRIPT ANYMORE
+    //script attached to instructionScreen in MazeMinigame
 
     public GameObject taskCanvas;
     public GameObject instructionScreen;
@@ -16,24 +16,21 @@ public class taskManager : MonoBehaviour
     public bool winGame = false;
     public bool notStartedYet = true;
 
-    
+
     void Start()
     {
         //ensures correct screens are showing
         taskCanvas.SetActive(false);
         instructionScreen.SetActive(true);
         winScreen.SetActive(false);
-        if (SceneManager.GetActiveScene().buildIndex == 2)
-        {
-            loseScreen.SetActive(false);
-        }
+        loseScreen.SetActive(false);
 
         //stops player from moving until the game starts
         playerRigidbody = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
         playerRigidbody.constraints = RigidbodyConstraints2D.FreezePosition;
     }
 
-    
+
     //controls the game's status (not started / won / lost)
     void Update()
     {
@@ -81,7 +78,6 @@ public class taskManager : MonoBehaviour
     void gameLost()
     {
         Debug.Log("you lost :(");
-        Time.timeScale = 0f;
         playerRigidbody.constraints = RigidbodyConstraints2D.FreezePosition;
         loseScreen.SetActive(true);
         taskCanvas.SetActive(false);

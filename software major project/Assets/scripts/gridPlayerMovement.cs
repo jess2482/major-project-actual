@@ -30,7 +30,7 @@ public class gridPlayerMovement : MonoBehaviour
         /*ensures that a new grid destination can only be inputted if:
             - the initial instruction screen is no longer showing
             - the character has already reached its destination*/
-        if (FindObjectOfType<taskManager>().notStartedYet == false) //.
+        if (FindObjectOfType<rainTaskManager>().notStartedYet == false)
         {
             if (Vector3.Distance(transform.position, movePoint.position) <= 0.01f)
             {

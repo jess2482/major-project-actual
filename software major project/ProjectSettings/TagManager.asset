@@ -9,6 +9,8 @@ TagManager:
   - mazeMinigameBox
   - item
   - rainMinigameBox
+  - transition
+  - raindrop
   layers:
   - Default
   - TransparentFX
@@ -57,4 +59,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: raindrop
+    uniqueID: 45370851
     locked: 0

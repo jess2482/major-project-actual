@@ -18,6 +18,7 @@ public class levelLoader : MonoBehaviour
     public bool mazeGameWon = false;
     public bool rainGameWon = false;
 
+
     // Update is called once per frame
     void Update()
     {
@@ -116,6 +117,7 @@ public class levelLoader : MonoBehaviour
 
     public void LoadScene()
     {
+        Debug.Log("loading scene");
         //changes scene to the desired scene using Build Index
         StartCoroutine(LoadLevel(sceneToLoad));
     }
@@ -123,12 +125,15 @@ public class levelLoader : MonoBehaviour
     //coroutine -> stops scene change from happening immediately, so transition can be shown
     IEnumerator LoadLevel(int levelIndex) 
     {
+        Debug.Log(levelIndex);
         //plays the transition animation
         transition.SetTrigger("startTransition");
 
+        Debug.Log("about to wait");
         //pauses this coroutine for certain amount of time before continuing
         yield return new WaitForSeconds(transitionDelay);
 
+        Debug.Log("loading new scene");
         SceneManager.LoadScene(levelIndex);
     }
 }

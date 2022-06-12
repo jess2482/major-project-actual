@@ -22,6 +22,7 @@ public class mazeMinigameManager : MonoBehaviour
 
     public void DataTransfer()
     {
+        Debug.Log("transferring data");
         //ensures that this is the first copy of the gameObject before saving it
         if (instance == null)
         {

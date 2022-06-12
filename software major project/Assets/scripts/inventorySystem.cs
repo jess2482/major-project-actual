@@ -13,12 +13,12 @@ public class inventorySystem : MonoBehaviour
     public Image[] inventoryImages; //images within each of the item slots
 
     public GameObject instructionScreen;
-    taskManager taskScript;
+    mazeTaskManager taskScript;
 
 
     void Start()
     {
-        taskScript = instructionScreen.GetComponent<taskManager>();
+        taskScript = instructionScreen.GetComponent<mazeTaskManager>();
     }
 
 
