@@ -11,6 +11,7 @@ TagManager:
   - rainMinigameBox
   - transition
   - raindrop
+  - cloneDestroyer
   layers:
   - Default
   - TransparentFX

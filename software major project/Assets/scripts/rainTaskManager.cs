@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class rainTaskManager : MonoBehaviour
 {
+    //script attached to instructionScreen in RainMinigame
+
     public GameObject taskCanvas;
     public GameObject instructionScreen;
     public GameObject winScreen;

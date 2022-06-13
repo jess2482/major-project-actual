@@ -6,7 +6,14 @@ public class raindropMovement : MonoBehaviour
 {
     [SerializeField] //allows the private variable to be viewed in the inspector
     private float raindropSpeed = 3f;
+    public GameObject instructionScreen;
     public rainTaskManager taskScript;
+
+    private void Start()
+    {
+        instructionScreen = GameObject.Find("instructionScreen");
+        taskScript = instructionScreen.GetComponent<rainTaskManager>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -19,8 +26,10 @@ public class raindropMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        Debug.Log("collision occurred");
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "cloneDestroyer")
         {
+            Debug.Log(collision.gameObject.tag);
             Destroy(this.gameObject); //maybe change to SetActive(false) later
         }
     }
