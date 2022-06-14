@@ -9,7 +9,7 @@ public class pauseMenu : MonoBehaviour
 
     public static bool gameIsPaused = false;
     public static bool instructionsOpen = false;
-    int currentScene = 1;
+    int currentScene;
 
     //canvases containing pause menu UI elements
     public GameObject pauseMenuUI;
@@ -17,9 +17,8 @@ public class pauseMenu : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("starting...");
         Time.timeScale = 1f;
-        gameIsPaused = false;
+        currentScene = SceneManager.GetActiveScene().buildIndex;
     }
 
     // Update is called once per frame
@@ -47,13 +46,16 @@ public class pauseMenu : MonoBehaviour
 
         if (Input.GetKeyDown("a"))
         {
-            if (instructionsOpen == true)
+            if (gameIsPaused == true || instructionsOpen == true)
             {
-                PauseGame();
-            }
-            else
-            {
-                ShowInstructions();
+                if (instructionsOpen == true)
+                {
+                    PauseGame();
+                }
+                else
+                {
+                    ShowInstructions();
+                }
             }
         }
     }
@@ -78,7 +80,6 @@ public class pauseMenu : MonoBehaviour
 
         //freezes the game (stops time) while the menu is open
         Time.timeScale = 0f;
-    
         gameIsPaused = true;
         instructionsOpen = false;
     }
