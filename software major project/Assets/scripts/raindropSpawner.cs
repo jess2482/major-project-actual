@@ -19,7 +19,7 @@ public class raindropSpawner : MonoBehaviour
     List<float> remainingPositions = new List<float>();
     private int waveIndex; //chosen randomly, determines which wave to spawn (so how many raindrops)
     float xPos = 0;
-    int rand;
+    int rand; 
 
     rainTaskManager taskScript;
     public Canvas instructionScreen;
@@ -57,8 +57,9 @@ public class raindropSpawner : MonoBehaviour
 
 
     //called from SelectWave function
-    void SpawnEnemy(float xPos)
+    void SpawnRaindrop(float xPos)
     {
+        Debug.Log("spawning raindrop");
         // spawns the enemy at the same position as the enemySpawner, with no rotation
         GameObject rainObject = Instantiate(rainPrefabs[0], new Vector3(xPos, transform.position.y, 0), Quaternion.identity); 
 
@@ -67,35 +68,38 @@ public class raindropSpawner : MonoBehaviour
 
     void SelectWave()
     {
-        waveIndex = Random.Range(0, possibleWaves.Length);
-
-        //currentTime = possibleWaves[waveIndex].delayTime; //?
-
-        //if only one enemy is going to be spawned
-        if (possibleWaves[waveIndex].spawnAmount == 1)
+        if (taskScript.notStartedYet == false)
         {
-            xPos = Random.Range(-xLimit, xLimit);
-            SpawnEnemy(xPos);
-        }
-        else if (possibleWaves[waveIndex].spawnAmount > 1)
-        {
-            rand = Random.Range(0, remainingPositions.Count);
-            xPos = remainingPositions[rand];
-            remainingPositions.RemoveAt(rand); //ensures that once a position is used, it won't be used again
+            Debug.Log("selecting wave");
+            waveIndex = Random.Range(0, possibleWaves.Length);
 
-            for (int i = 0; i < possibleWaves[waveIndex].spawnAmount; i++)
+            //currentTime = possibleWaves[waveIndex].delayTime; 
+
+            //if only one enemy is going to be spawned
+            if (possibleWaves[waveIndex].spawnAmount == 1)
             {
-                SpawnEnemy(xPos);
+                xPos = Random.Range(-xLimit, xLimit);
+                SpawnRaindrop(xPos);
+            }
+            else if (possibleWaves[waveIndex].spawnAmount > 1)
+            {
                 rand = Random.Range(0, remainingPositions.Count);
                 xPos = remainingPositions[rand];
-                remainingPositions.RemoveAt(rand);
+                remainingPositions.RemoveAt(rand); //ensures that once a position is used, it won't be used again
+
+                for (int i = 0; i < possibleWaves[waveIndex].spawnAmount; i++)
+                {
+                    SpawnRaindrop(xPos);
+                    rand = Random.Range(0, remainingPositions.Count);
+                    xPos = remainingPositions[rand];
+                    remainingPositions.RemoveAt(rand);
+                }
             }
+
+            //resets the possible positions that the raindrop can fall in (after they were removed above)
+            remainingPositions = new List<float>();
+            remainingPositions.AddRange(xPositions);
         }
-
-        //resets the possible positions that the raindrop can fall in (after they were removed above)
-        remainingPositions = new List<float>();
-        remainingPositions.AddRange(xPositions); 
-
     }
 
 }

@@ -31,7 +31,7 @@ public class rainTaskManager : MonoBehaviour
     //controls the game's status (not started / won / lost)
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && notStartedYet == true)
         {
             startGame();
         }
@@ -44,7 +44,7 @@ public class rainTaskManager : MonoBehaviour
     }
 
 
-    //before the game has started, freezes the player's position and shows the initial instruction screen
+    //after the game has started, unfreezes the player's position + removes the initial instruction screen
     void startGame()
     {
         Debug.Log("game starting...");
@@ -60,8 +60,9 @@ public class rainTaskManager : MonoBehaviour
     void gameWon()
     {
         Debug.Log("you won!");
-        FindObjectOfType<levelLoader>().rainGameWon = true;
         playerRigidbody.constraints = RigidbodyConstraints2D.FreezePosition;
+        FindObjectOfType<levelLoader>().rainGameWon = true;
+        //Time.timeScale = 0f;
         winScreen.SetActive(true);
         taskCanvas.SetActive(false);
     }

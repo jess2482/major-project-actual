@@ -12,13 +12,15 @@ public class gridPlayerMovement : MonoBehaviour
     float verticalInput;
 
     public LayerMask stopsMovement;
+    rainTaskManager taskScript;
 
     // Start is called before the first frame update
     void Start()
     {
         //stops the movePoint from being a player of the playerCharacter as soon as the game starts
         //(prevents the movePoint from constantly moving when the player moves, while still keeping the hierarchy organised)
-        movePoint.parent = null; 
+        movePoint.parent = null;
+        taskScript = FindObjectOfType<rainTaskManager>();
     }
 
     // Update is called once per frame
@@ -30,7 +32,7 @@ public class gridPlayerMovement : MonoBehaviour
         /*ensures that a new grid destination can only be inputted if:
             - the initial instruction screen is no longer showing
             - the character has already reached its destination*/
-        if (FindObjectOfType<rainTaskManager>().notStartedYet == false)
+        if (taskScript.notStartedYet == false && taskScript.winGame == false)
         {
             if (Vector3.Distance(transform.position, movePoint.position) <= 0.01f)
             {

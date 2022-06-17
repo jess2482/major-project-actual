@@ -26,10 +26,8 @@ public class raindropMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("collision occurred");
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "cloneDestroyer")
         {
-            Debug.Log(collision.gameObject.tag);
             Destroy(this.gameObject); //maybe change to SetActive(false) later
         }
     }

@@ -12,6 +12,7 @@ TagManager:
   - transition
   - raindrop
   - cloneDestroyer
+  - movementBlock
   layers:
   - Default
   - TransparentFX
