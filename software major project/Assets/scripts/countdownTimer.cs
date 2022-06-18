@@ -10,12 +10,12 @@ public class countdownTimer : MonoBehaviour
     public float timeLeft = 40;
     public Text timeText;
     public GameObject instructionScreen;
-    taskManager taskScript;
+    mazeTaskManager taskScript;
 
 
     void Start()
     {
-        taskScript = instructionScreen.GetComponent<taskManager>();
+        taskScript = instructionScreen.GetComponent<mazeTaskManager>();
     }
 
 
@@ -32,7 +32,7 @@ public class countdownTimer : MonoBehaviour
         else
         {
             timeLeft = 0;
-            taskScript.loseGame=true;
+            taskScript.loseGame = true;
         }
 
         displayTime(timeLeft);

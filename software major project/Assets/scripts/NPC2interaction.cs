@@ -8,15 +8,19 @@ public class NPC2interaction : MonoBehaviour
     //script attached to npc2 in MainScene
 
     public Image interactionNotif;
-    public dialogue conversation;
+    public dialogue initialConversation;
+    public dialogue successConversation; 
     bool interaction;
 
+    wholeGameManager managerScript;
+
     //essentially a restricted list of game dialogue
-    private Queue<string> NPC2sentences;
+    Queue<string> NPC2sentences;
 
     void Start()
     {
         NPC2sentences = new Queue<string>();
+        managerScript = FindObjectOfType<wholeGameManager>();
 
         //makes the alert disappear when the game begins
         interactionNotif.gameObject.SetActive(false);
@@ -27,7 +31,15 @@ public class NPC2interaction : MonoBehaviour
         //if the player collides with the object, it triggers the dialogueManager
         if (interaction == true)
         {
-            FindObjectOfType<dialogueManager>().startDialogue(conversation, NPC2sentences);
+            if (managerScript.mazeMinigameWon == false)
+            {
+                FindObjectOfType<dialogueManager>().startDialogue(initialConversation, NPC2sentences);
+            }
+            else if (managerScript.mazeMinigameWon == true)
+            {
+                NPC2sentences = new Queue<string>();
+                FindObjectOfType<dialogueManager>().startDialogue(successConversation, NPC2sentences);
+            }
         }
     }
 

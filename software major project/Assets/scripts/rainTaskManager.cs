@@ -61,7 +61,7 @@ public class rainTaskManager : MonoBehaviour
     {
         Debug.Log("you won!");
         playerRigidbody.constraints = RigidbodyConstraints2D.FreezePosition;
-        FindObjectOfType<levelLoader>().rainGameWon = true;
+        FindObjectOfType<wholeGameManager>().rainMinigameWon = true;
         //Time.timeScale = 0f;
         winScreen.SetActive(true);
         taskCanvas.SetActive(false);

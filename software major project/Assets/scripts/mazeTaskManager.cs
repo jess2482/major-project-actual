@@ -16,7 +16,6 @@ public class mazeTaskManager : MonoBehaviour
     public bool winGame = false;
     public bool notStartedYet = true;
 
-
     void Start()
     {
         //ensures correct screens are showing
@@ -67,7 +66,8 @@ public class mazeTaskManager : MonoBehaviour
     void gameWon()
     {
         Debug.Log("you won!");
-        FindObjectOfType<levelLoader>().mazeGameWon = true;
+        FindObjectOfType<wholeGameManager>().mazeMinigameWon = true;
+        Debug.Log("mazeMinigameWon is " + FindObjectOfType<wholeGameManager>().mazeMinigameWon);
         playerRigidbody.constraints = RigidbodyConstraints2D.FreezePosition;
         winScreen.SetActive(true);
         taskCanvas.SetActive(false);

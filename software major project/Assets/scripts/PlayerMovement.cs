@@ -11,9 +11,24 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public GameObject instructionsImage;
 
+    wholeGameManager managerScript;
+
     //can store x and y values
     Vector2 movement;
 
+    private void Start()
+    {
+        managerScript = FindObjectOfType<wholeGameManager>();
+
+        if (managerScript.mostRecentScene == 2)
+        {
+            this.gameObject.transform.position = new Vector3(12, 4, 0);
+        }
+        else if(managerScript.mostRecentScene == 3)
+        {
+            this.gameObject.transform.position = new Vector3(12.5f, -6.5f, 0);
+        }
+    }
 
     void Update()
     {

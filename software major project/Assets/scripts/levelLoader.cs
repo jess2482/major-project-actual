@@ -15,13 +15,15 @@ public class levelLoader : MonoBehaviour
     bool checkingMovement = false; //set to true when the player is being asked whether to move or not
     Collision2D boxCollision;
 
-    public bool mazeGameWon = false;
-    public bool rainGameWon = false;
+    public bool mazeGameWon;
+    public bool rainGameWon;
 
 
     // Update is called once per frame
     void Update()
     {
+
+        Debug.Log("mazeGameWon is " + mazeGameWon);
         //for transition FROM opening screen TO main scene
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
@@ -59,9 +61,10 @@ public class levelLoader : MonoBehaviour
             //then loads the new scene if space bar is pressed once the game is over
             if (Input.GetKeyDown("space"))
             {
+                Debug.Log("space pressed (to go back to main)");
                 if (mazeGameWon == true)
                 {
-                    FindObjectOfType<mazeMinigameManager>().DataTransfer();
+                    Debug.Log("about to load scene");
                     LoadScene();
                 }
             }
@@ -118,6 +121,13 @@ public class levelLoader : MonoBehaviour
     public void LoadScene()
     {
         Debug.Log("loading scene");
+        //FindObjectOfType<wholeGameManager>().DataTransfer();
+
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            FindObjectOfType<wholeGameManager>().mostRecentScene = SceneManager.GetActiveScene().buildIndex;
+        }
+
         //changes scene to the desired scene using Build Index
         StartCoroutine(LoadLevel(sceneToLoad));
     }

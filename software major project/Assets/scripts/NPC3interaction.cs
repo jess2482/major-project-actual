@@ -8,8 +8,11 @@ public class NPC3interaction : MonoBehaviour
     //script attached to npc3 in MainScene
 
     public Image interactionNotif;
-    public dialogue conversation;
+    public dialogue initialConversation;
+    public dialogue successConversation;
     bool interaction;
+
+    wholeGameManager managerScript;
 
     //essentially a restricted list of game dialogue
     private Queue<string> NPC3sentences;
@@ -17,6 +20,7 @@ public class NPC3interaction : MonoBehaviour
     void Start()
     {
         NPC3sentences = new Queue<string>();
+        managerScript = FindObjectOfType<wholeGameManager>();
 
         //makes the alert disappear when the game begins
         interactionNotif.gameObject.SetActive(false);
@@ -27,7 +31,15 @@ public class NPC3interaction : MonoBehaviour
         //if the player collides with the object, it triggers the dialogueManager
         if (interaction == true)
         {
-            FindObjectOfType<dialogueManager>().startDialogue(conversation, NPC3sentences);
+            if (managerScript.rainMinigameWon == false)
+            {
+                FindObjectOfType<dialogueManager>().startDialogue(initialConversation, NPC3sentences);
+            }
+            else if (managerScript.rainMinigameWon == true)
+            {
+                NPC3sentences = new Queue<string>();
+                FindObjectOfType<dialogueManager>().startDialogue(successConversation, NPC3sentences);
+            }
         }
     }
 

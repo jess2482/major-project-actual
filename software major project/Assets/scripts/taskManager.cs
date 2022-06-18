@@ -7,7 +7,7 @@ public class taskManager : MonoBehaviour
 {
     //NOT USING THIS SCRIPT ANYMORE
 
-    public GameObject taskCanvas;
+    /*public GameObject taskCanvas;
     public GameObject instructionScreen;
     public GameObject winScreen;
     public GameObject loseScreen;
@@ -91,5 +91,5 @@ public class taskManager : MonoBehaviour
             //reloads the current scene, to restart the game
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-    }
+    }*/
 }

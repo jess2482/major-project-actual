@@ -14,16 +14,29 @@ public class mainInventory : MonoBehaviour
     public GameObject newItem;
     bool inventoryOpen = false;
     Rigidbody2D playerRigidbody;
+    public GameObject mazeToken;
+    public GameObject rainToken;
 
     private void Start()
     {
         inventoryUI.SetActive(false);
         playerRigidbody = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+
+        mazeToken = GameObject.Find("mazeToken");
+        rainToken = GameObject.Find("rainToken");
+
+        if (FindObjectOfType<wholeGameManager>().mazeMinigameWon == true)
+        {
+            AddNewItem(mazeToken);
+        }
+        if (FindObjectOfType<wholeGameManager>().rainMinigameWon == true)
+        {
+            AddNewItem(rainToken);
+        }
     }
 
     private void Update()
     {
-        inventoryTesting();
 
         if (Input.GetKeyDown("i"))
         {
@@ -42,15 +55,6 @@ public class mainInventory : MonoBehaviour
                 inventoryUI.SetActive(false);
                 inventoryOpen = false;
             }
-        }
-    }
-
-    void inventoryTesting()
-    {
-        if (Input.GetKeyDown("t"))
-        {
-            Debug.Log("adding new item");
-            AddNewItem(newItem);
         }
     }
 

@@ -3,20 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class mazeMinigameManager : MonoBehaviour
+public class wholeGameManager : MonoBehaviour
 {
-    //script attached to DataTransfer object (currently just in MazeMinigame)
+    //attached to dataTransfer object (moved between scenes)
 
     //static ensures that regardless of how many copies of this script there are, there is only one copy of this variable
-    static mazeMinigameManager instance;
+    static wholeGameManager instance;
 
-    int transferCheck = 5;
-    bool gameWon = false;
+    public int mostRecentScene;
+    public bool mazeMinigameWon = false;
+    public bool rainMinigameWon = false;
 
     private void Start()
     {
-        Debug.Log(transferCheck);
-        Debug.Log(gameWon);
+        DataTransfer();
+    }
+
+    private void Update()
+    {
+        FindObjectOfType<levelLoader>().mazeGameWon = mazeMinigameWon;
+        FindObjectOfType<levelLoader>().rainGameWon = rainMinigameWon;
     }
 
 
@@ -44,8 +50,5 @@ public class mazeMinigameManager : MonoBehaviour
     {
         //implement any code from start function
         //https://www.youtube.com/watch?v=ncN4HVo7K28 for more info [11:00]
-
-        Debug.Log(transferCheck);
-        Debug.Log(gameWon);
     }
 }
