@@ -13,6 +13,7 @@ public class wholeGameManager : MonoBehaviour
     public int mostRecentScene;
     public bool mazeMinigameWon = false;
     public bool rainMinigameWon = false;
+    
 
     private void Start()
     {
@@ -48,7 +49,7 @@ public class wholeGameManager : MonoBehaviour
 
     private void SceneChanged(Scene arg0, Scene arg1)
     {
-        //implement any code from start function
-        //https://www.youtube.com/watch?v=ncN4HVo7K28 for more info [11:00]
+        //insert anything from the start function
+        //(go to 11:00 of tutorial 6 for example)
     }
 }

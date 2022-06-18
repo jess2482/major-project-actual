@@ -13,6 +13,7 @@ TagManager:
   - raindrop
   - cloneDestroyer
   - movementBlock
+  - endingPodium
   layers:
   - Default
   - TransparentFX

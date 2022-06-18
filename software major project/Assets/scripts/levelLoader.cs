@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class levelLoader : MonoBehaviour
 {
     //script is attached to the InterfaceManager in each scene
+    //(also attached to playerCharacter in MainScene? -> if there's issues, check that)
 
     int sceneToLoad;
     public Animator transition;
@@ -17,13 +18,11 @@ public class levelLoader : MonoBehaviour
 
     public bool mazeGameWon;
     public bool rainGameWon;
-
+    public bool endGame = false;
 
     // Update is called once per frame
     void Update()
     {
-
-        Debug.Log("mazeGameWon is " + mazeGameWon);
         //for transition FROM opening screen TO main scene
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
@@ -84,6 +83,13 @@ public class levelLoader : MonoBehaviour
                     LoadScene();
                 }
             }
+        }
+
+        //transition FROM main scene (or technically any scene but shouldn't be called) TO ending screen
+        if (endGame == true)
+        {
+            sceneToLoad = 4;
+            LoadScene();
         }
     }
     

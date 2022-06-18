@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if(managerScript.mostRecentScene == 3)
         {
-            this.gameObject.transform.position = new Vector3(12.5f, -6.5f, 0);
+            this.gameObject.transform.position = new Vector3(14, -2.5f, 0);
         }
     }
 

@@ -51,6 +51,7 @@ public class dialogueManager : MonoBehaviour
                 //stops the player from moving while the conversation is still in progress
                 playerRigidbody.constraints = RigidbodyConstraints2D.FreezePosition;
 
+                Debug.Log("dialogue should show");
                 //textbox appears (if not already visible) and conversation begins or moves to the next line
                 FindObjectOfType<NPC1interaction>().interactionNotif.enabled = false;
                 textbox.enabled = true;

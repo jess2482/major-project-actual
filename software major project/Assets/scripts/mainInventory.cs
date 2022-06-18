@@ -17,19 +17,32 @@ public class mainInventory : MonoBehaviour
     public GameObject mazeToken;
     public GameObject rainToken;
 
+    wholeGameManager managerScript;
+    GameObject endingPodium;
+    GameObject podiumTokens;
+    public GameObject tokenInstruction;
+    bool readyToPlace = false; //checks whether the player can place the tokens to end the game
+
     private void Start()
     {
+        managerScript = FindObjectOfType<wholeGameManager>();
+        endingPodium = GameObject.Find("endingPodium");
+        podiumTokens = GameObject.Find("podiumTokens");
+        endingPodium.SetActive(false);
+        podiumTokens.SetActive(false); 
+        tokenInstruction.SetActive(false);
+
         inventoryUI.SetActive(false);
         playerRigidbody = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
 
         mazeToken = GameObject.Find("mazeToken");
         rainToken = GameObject.Find("rainToken");
 
-        if (FindObjectOfType<wholeGameManager>().mazeMinigameWon == true)
+        if (managerScript.mazeMinigameWon == true)
         {
             AddNewItem(mazeToken);
         }
-        if (FindObjectOfType<wholeGameManager>().rainMinigameWon == true)
+        if (managerScript.rainMinigameWon == true)
         {
             AddNewItem(rainToken);
         }
@@ -37,6 +50,15 @@ public class mainInventory : MonoBehaviour
 
     private void Update()
     {
+        if (managerScript.mazeMinigameWon == true && managerScript.rainMinigameWon == true)
+        {
+            endingPodium.SetActive(true);
+        }
+
+        if(readyToPlace == true && Input.GetKeyDown("space")) 
+        {
+            TokenEnding();
+        }
 
         if (Input.GetKeyDown("i"))
         {
@@ -55,6 +77,25 @@ public class mainInventory : MonoBehaviour
                 inventoryUI.SetActive(false);
                 inventoryOpen = false;
             }
+        }
+
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.transform.parent.gameObject == endingPodium)
+        {
+            tokenInstruction.SetActive(true);
+            readyToPlace = true; 
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision) 
+    {
+        if (collision.gameObject.transform.parent.gameObject == endingPodium)
+        {
+            tokenInstruction.SetActive(false);
+            readyToPlace = false;
         }
     }
 
@@ -85,5 +126,25 @@ public class mainInventory : MonoBehaviour
     void hideAllImages()
     {
         foreach (var i in inventoryImages) { i.gameObject.SetActive(false); }
+    }
+
+    //shows tokens on the podium + starts move to ending screen
+    void TokenEnding()
+    {
+        playerRigidbody.constraints = RigidbodyConstraints2D.FreezePosition;
+        hideAllImages();
+        tokenInstruction.SetActive(false);
+        podiumTokens.SetActive(true);
+
+        StartCoroutine(WaitForTokens(2.5f));
+        
+    }
+
+    IEnumerator WaitForTokens(float time)
+    {
+        Debug.Log("about to wait in mainInventory");
+        //pauses this coroutine for certain amount of time before continuing
+        yield return new WaitForSeconds(time);
+        FindObjectOfType<levelLoader>().endGame = true;
     }
 }
