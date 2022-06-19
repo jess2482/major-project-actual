@@ -33,12 +33,12 @@ public class NPC2interaction : MonoBehaviour
         {
             if (managerScript.mazeMinigameWon == false)
             {
-                FindObjectOfType<dialogueManager>().startDialogue(initialConversation, NPC2sentences);
+                FindObjectOfType<dialogueManager>().startDialogue(initialConversation, NPC2sentences, 2);
             }
             else if (managerScript.mazeMinigameWon == true)
             {
                 NPC2sentences = new Queue<string>();
-                FindObjectOfType<dialogueManager>().startDialogue(successConversation, NPC2sentences);
+                FindObjectOfType<dialogueManager>().startDialogue(successConversation, NPC2sentences, 2);
             }
         }
     }

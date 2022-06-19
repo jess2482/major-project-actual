@@ -27,7 +27,7 @@ public class NPC1interaction : MonoBehaviour
         //if the player collides with the object, it triggers the dialogueManager
         if (interaction == true)
         {
-            FindObjectOfType<dialogueManager>().startDialogue(conversation, NPC1sentences);
+            FindObjectOfType<dialogueManager>().startDialogue(conversation, NPC1sentences, 1);
         }
     }
 

@@ -33,12 +33,12 @@ public class NPC3interaction : MonoBehaviour
         {
             if (managerScript.rainMinigameWon == false)
             {
-                FindObjectOfType<dialogueManager>().startDialogue(initialConversation, NPC3sentences);
+                FindObjectOfType<dialogueManager>().startDialogue(initialConversation, NPC3sentences, 3);
             }
             else if (managerScript.rainMinigameWon == true)
             {
                 NPC3sentences = new Queue<string>();
-                FindObjectOfType<dialogueManager>().startDialogue(successConversation, NPC3sentences);
+                FindObjectOfType<dialogueManager>().startDialogue(successConversation, NPC3sentences, 3);
             }
         }
     }

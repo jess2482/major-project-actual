@@ -25,7 +25,7 @@ public class dialogueManager : MonoBehaviour
 
 
     //called from playerInteraction script
-    public void startDialogue(dialogue conversation, Queue<string> sentences)
+    public void startDialogue(dialogue conversation, Queue<string> sentences, int npc)
     {
 
         //changes the text on the screen to be the character's name
@@ -41,6 +41,15 @@ public class dialogueManager : MonoBehaviour
 
         if (Input.GetKeyDown("space"))
         {
+            if (npc == 2)
+            {
+                FindObjectOfType<levelLoader>().npc2interaction = true;
+            }
+            else if (npc == 3)
+            {
+                FindObjectOfType<levelLoader>().npc3interaction = true;
+            }
+            
             //stops the conversation from continuing in the background once space is pressed
             if (conversationOver == true)
             {

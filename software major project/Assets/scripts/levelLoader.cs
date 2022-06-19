@@ -20,6 +20,9 @@ public class levelLoader : MonoBehaviour
     public bool rainGameWon;
     public bool endGame = false;
 
+    public bool npc2interaction = false;
+    public bool npc3interaction = false;
+
     // Update is called once per frame
     void Update()
     {
@@ -101,7 +104,7 @@ public class levelLoader : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             //transition TO maze minigame
-            if (boxCollision.gameObject.tag == "mazeMinigameBox")
+            if (boxCollision.gameObject.tag == "mazeMinigameBox" && npc2interaction == true)
             {
                 sceneToLoad = 2;
 
@@ -112,7 +115,7 @@ public class levelLoader : MonoBehaviour
             }
 
             //transition TO rain minigame
-            if (boxCollision.gameObject.tag == "rainMinigameBox")
+            if (boxCollision.gameObject.tag == "rainMinigameBox" && npc3interaction == true)
             {
                 sceneToLoad = 3;
 
