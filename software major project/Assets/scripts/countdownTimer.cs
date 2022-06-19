@@ -7,7 +7,7 @@ public class countdownTimer : MonoBehaviour
 {
     //script attached to timerText in MazeMinigame
 
-    public float timeLeft = 40;
+    public float timeLeft = 50;
     public Text timeText;
     public GameObject instructionScreen;
     mazeTaskManager taskScript;

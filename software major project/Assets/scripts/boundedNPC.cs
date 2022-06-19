@@ -7,7 +7,8 @@ public class boundedNPC : MonoBehaviour
     //script attached to npc1 in MainScene
 
     private Vector3 directionVector; //NPC's position
-    public float speed = 3f;
+    [SerializeField]
+    float speed = 1.5f;
     private Rigidbody2D npcRigidbody;
     private Animator npcAnim; //NPC's animator
     int direction = 1;

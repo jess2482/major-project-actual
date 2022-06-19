@@ -87,6 +87,15 @@ public class mainInventory : MonoBehaviour
             }
         }
 
+        if (inventoryOpen == true && Input.GetKeyDown("x"))
+        {
+            Debug.Log("closing inventory...");
+            playerRigidbody.constraints = RigidbodyConstraints2D.None;
+            playerRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+            inventoryUI.SetActive(false);
+            inventoryOpen = false;
+        }
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)

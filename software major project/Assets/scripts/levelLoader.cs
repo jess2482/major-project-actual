@@ -8,7 +8,7 @@ public class levelLoader : MonoBehaviour
     //script is attached to the InterfaceManager in each scene
     //(also attached to playerCharacter in MainScene)
 
-    int sceneToLoad;
+    public int sceneToLoad;
     public Animator transition;
     float transitionDelay = 1.3f;
 

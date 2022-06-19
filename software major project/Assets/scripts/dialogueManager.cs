@@ -9,6 +9,7 @@ public class dialogueManager : MonoBehaviour
 
     public Text nameText;
     public Text dialogueText;
+    public Text pressXText;
     bool conversationOver;
     public Image textbox;
     Rigidbody2D playerRigidbody;
@@ -21,6 +22,7 @@ public class dialogueManager : MonoBehaviour
         textbox.enabled = false;
         nameText.enabled = false;
         dialogueText.enabled = false;
+        pressXText.enabled = false;
     }
 
 
@@ -66,6 +68,7 @@ public class dialogueManager : MonoBehaviour
                 textbox.enabled = true;
                 nameText.enabled = true;
                 dialogueText.enabled = true;
+                pressXText.enabled = true;
                 displayNextSentence(sentences);
             }
         }
@@ -94,6 +97,7 @@ public class dialogueManager : MonoBehaviour
         textbox.enabled = false;
         nameText.enabled = false;
         dialogueText.enabled = false;
+        pressXText.enabled = false;
         //lets the player move around again
         playerRigidbody.constraints = RigidbodyConstraints2D.None;
         playerRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;

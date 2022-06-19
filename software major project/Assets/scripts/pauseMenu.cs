@@ -17,8 +17,9 @@ public class pauseMenu : MonoBehaviour
 
     private void Start()
     {
-        //Time.timeScale = 1f;
+        Time.timeScale = 1f;
         currentScene = SceneManager.GetActiveScene().buildIndex;
+        gameIsPaused = false;
     }
 
     
@@ -93,7 +94,10 @@ public class pauseMenu : MonoBehaviour
     void RestartScene()
     {
         Debug.Log("loading game");
-        SceneManager.LoadScene(currentScene);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        /*FindObjectOfType<levelLoader>().sceneToLoad = SceneManager.GetActiveScene().buildIndex;
+        Time.timeScale = 1f;
+        FindObjectOfType<levelLoader>().LoadScene();*/
     }
 
     //called from Update

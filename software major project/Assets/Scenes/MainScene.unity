@@ -1571,6 +1571,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 1973470323216263289}
   dialogueText: {fileID: 1973470324767860166}
+  pressXText: {fileID: 730504198}
   textbox: {fileID: 1973470323012731623}
 --- !u!4 &581199043
 Transform:
@@ -1958,6 +1959,85 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666382410}
+  m_CullTransparentMesh: 1
+--- !u!1 &730504196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 730504197}
+  - component: {fileID: 730504199}
+  - component: {fileID: 730504198}
+  m_Layer: 5
+  m_Name: pressX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &730504197
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730504196}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1973470323012731622}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 171.75354, y: -50}
+  m_SizeDelta: {x: 370.3833, y: 26.149}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &730504198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730504196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 15
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 118
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: PRESS X TO LEAVE CONVERSATION
+--- !u!222 &730504199
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730504196}
   m_CullTransparentMesh: 1
 --- !u!1 &806186795
 GameObject:
@@ -2933,6 +3013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af3a31dfc9a9f64aa48f5fd2cd9b503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneToLoad: 0
   transition: {fileID: 1414333811286865054}
   moveCheckUI: {fileID: 1516130818}
   mazeGameWon: 0
@@ -5879,7 +5960,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.37949425, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5890,7 +5971,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6, y: 1.6}
+  m_Size: {x: 2.998135, y: 1.6}
   m_EdgeRadius: 0
 --- !u!1 &1925224587
 GameObject:
@@ -6315,7 +6396,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.36950684, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -6326,7 +6407,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6, y: 1.6}
+  m_Size: {x: 2.9781613, y: 1.6}
   m_EdgeRadius: 0
 --- !u!1 &2029621011
 GameObject:
@@ -11095,6 +11176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af3a31dfc9a9f64aa48f5fd2cd9b503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneToLoad: 0
   transition: {fileID: 1414333811286865054}
   moveCheckUI: {fileID: 1516130818}
   mazeGameWon: 0
@@ -11241,13 +11323,14 @@ RectTransform:
   m_Children:
   - {fileID: 1973470323216263288}
   - {fileID: 1973470324767860217}
+  - {fileID: 730504197}
   m_Father: {fileID: 1973470322852984332}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.0000009532105, y: 11}
-  m_SizeDelta: {x: 482.547, y: 162.8075}
+  m_AnchoredPosition: {x: -0.000011444092, y: 11}
+  m_SizeDelta: {x: 579.9199, y: 162.8075}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1973470323012731623
 MonoBehaviour:
@@ -11303,8 +11386,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11, y: 33.367}
-  m_SizeDelta: {x: 413.8903, y: 26.149}
+  m_AnchoredPosition: {x: 5.3994, y: 33.367}
+  m_SizeDelta: {x: 494.6891, y: 26.149}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1973470323216263289
 MonoBehaviour:
@@ -11391,7 +11474,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[dialogue here                                                 ]'
+  m_Text: '[dialogue here                                                             
+    ]'
 --- !u!222 &1973470324767860167
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11434,8 +11518,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.7515, y: -16.51}
-  m_SizeDelta: {x: 403.3931, y: 73.606}
+  m_AnchoredPosition: {x: 5.6669, y: -16.510002}
+  m_SizeDelta: {x: 469.2902, y: 73.606}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &4147164691771378296
 RectTransform:

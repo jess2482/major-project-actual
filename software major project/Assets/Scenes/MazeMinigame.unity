@@ -240,7 +240,7 @@ Transform:
   - {fileID: 762913743}
   - {fileID: 1634065175}
   m_Father: {fileID: 1621596803}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &132776023
 MonoBehaviour:
@@ -787,7 +787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1280592638026406775, guid: c860ae1c2c081814a840a351d79c32f1, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1280592638026406775, guid: c860ae1c2c081814a840a351d79c32f1, type: 3}
       propertyPath: m_AnchorMax.x
@@ -892,6 +892,10 @@ PrefabInstance:
     - target: {fileID: 1280592639099189108, guid: c860ae1c2c081814a840a351d79c32f1, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280592639314878346, guid: c860ae1c2c081814a840a351d79c32f1, type: 3}
+      propertyPath: timeLeft
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1280592639314878346, guid: c860ae1c2c081814a840a351d79c32f1, type: 3}
       propertyPath: instructionScreen
@@ -2125,9 +2129,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1724748738068188054}
   - {fileID: 132776022}
   - {fileID: 560447708}
-  - {fileID: 1724748738068188054}
   - {fileID: 8140756875458107187}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -2144,11 +2148,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af3a31dfc9a9f64aa48f5fd2cd9b503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneToLoad: 0
   transition: {fileID: 1724748738158520882}
   moveCheckUI: {fileID: 0}
   mazeGameWon: 0
   rainGameWon: 0
   endGame: 0
+  npc2interaction: 0
+  npc3interaction: 0
 --- !u!1 &1625842789
 GameObject:
   m_ObjectHideFlags: 0
@@ -2890,7 +2897,7 @@ RectTransform:
   m_Children:
   - {fileID: 1724748738158520877}
   m_Father: {fileID: 1621596803}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
