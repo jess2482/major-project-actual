@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class itemSetup : MonoBehaviour
 {
-    //scripta attached to any item in MazeMinigame
+    //script attached to any item in MazeMinigame
 
     public enum itemType { NONE, coin, pumpkin, strawberry, diamond}
     public itemType type;
@@ -17,22 +17,4 @@ public class itemSetup : MonoBehaviour
         GetComponent<Collider2D>().isTrigger = true;
     }
 
-    /*public void Interact()
-    {
-        switch (type)
-        {
-            case itemType.coin:
-                Debug.Log("coin!");
-                break;
-            case itemType.pumpkin:
-                Debug.Log("pumpkin");
-                break;
-            case itemType.strawberry:
-                Debug.Log("strawberry");
-                break;
-            case itemType.egg:
-                Debug.Log("egg");
-                break;
-        }
-    }*/
 }

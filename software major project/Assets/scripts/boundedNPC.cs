@@ -8,9 +8,8 @@ public class boundedNPC : MonoBehaviour
 
     private Vector3 directionVector; //NPC's position
     public float speed = 3f;
-    private Rigidbody2D npcRigidbody; //NPC's Rigidbody
+    private Rigidbody2D npcRigidbody;
     private Animator npcAnim; //NPC's animator
-    //public Collider2D boundsCollider;
     int direction = 1;
     int tempDirection;
 
@@ -23,17 +22,12 @@ public class boundedNPC : MonoBehaviour
 
     private void Update()
     {
-        Move();
-    }
-
-    void Move()
-    {
         npcRigidbody.MovePosition(transform.position + directionVector * speed * Time.deltaTime);
     }
 
+    //called from Start and any time the NPC reaches a boundary
     void ChangeDirection()
     {
-        //int direction = Random.Range(0, 2);
         direction = direction * -1;
 
         //could be done using if/else statements, but this will help if you add left/right later
@@ -68,7 +62,7 @@ public class boundedNPC : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             tempDirection = direction;
-            npcAnim.Play("walkDown");
+            npcAnim.Play("walkDown"); //ensures the NPC is facing towards the camera when talking to the player
             npcRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
         }
     }
@@ -77,8 +71,10 @@ public class boundedNPC : MonoBehaviour
     {
         if (trigger.gameObject.tag == "Player")
         {
+            //makes sure the NPC continues in the same way it was walking before
             direction = tempDirection * -1;
             ChangeDirection();
+
             npcRigidbody.constraints = RigidbodyConstraints2D.None;
             npcRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         }

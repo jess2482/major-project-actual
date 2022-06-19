@@ -17,11 +17,14 @@ public class wholeGameManager : MonoBehaviour
 
     private void Start()
     {
+        //sets up this object to be moved between scenes
         DataTransfer();
     }
 
+    
     private void Update()
     {
+        //ensures that the levelLoader's minigame booleans always match the minigame results
         FindObjectOfType<levelLoader>().mazeGameWon = mazeMinigameWon;
         FindObjectOfType<levelLoader>().rainGameWon = rainMinigameWon;
     }

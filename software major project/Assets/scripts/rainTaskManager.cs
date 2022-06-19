@@ -43,7 +43,7 @@ public class rainTaskManager : MonoBehaviour
 
     }
 
-
+    //called from Update
     //after the game has started, unfreezes the player's position + removes the initial instruction screen
     void startGame()
     {
@@ -56,13 +56,13 @@ public class rainTaskManager : MonoBehaviour
     }
 
 
+    //called from Update
     //once the game has been won, freezes the player's position and shows the winning screen
     void gameWon()
     {
         Debug.Log("you won!");
         playerRigidbody.constraints = RigidbodyConstraints2D.FreezePosition;
         FindObjectOfType<wholeGameManager>().rainMinigameWon = true;
-        //Time.timeScale = 0f;
         winScreen.SetActive(true);
         taskCanvas.SetActive(false);
     }

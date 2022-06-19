@@ -14,6 +14,7 @@ public class mainInventory : MonoBehaviour
     public GameObject newItem;
     bool inventoryOpen = false;
     Rigidbody2D playerRigidbody;
+
     public GameObject mazeToken;
     public GameObject rainToken;
 
@@ -23,9 +24,12 @@ public class mainInventory : MonoBehaviour
     public GameObject tokenInstruction;
     bool readyToPlace = false; //checks whether the player can place the tokens to end the game
 
+
     private void Start()
     {
         managerScript = FindObjectOfType<wholeGameManager>();
+
+        //ensures the podium where player can place tokens to win the game is not visible
         endingPodium = GameObject.Find("endingPodium");
         podiumTokens = GameObject.Find("podiumTokens");
         endingPodium.SetActive(false);
@@ -38,6 +42,7 @@ public class mainInventory : MonoBehaviour
         mazeToken = GameObject.Find("mazeToken");
         rainToken = GameObject.Find("rainToken");
 
+        //automatically assigns the player a token once they win a minigame
         if (managerScript.mazeMinigameWon == true)
         {
             AddNewItem(mazeToken);
@@ -50,16 +55,19 @@ public class mainInventory : MonoBehaviour
 
     private void Update()
     {
+        //shows the podium if both minigame tokens have been collected)
         if (managerScript.mazeMinigameWon == true && managerScript.rainMinigameWon == true)
         {
             endingPodium.SetActive(true);
         }
 
+        //ends the game once the player pressed space to place tokens on the podium
         if(readyToPlace == true && Input.GetKeyDown("space")) 
         {
             TokenEnding();
         }
 
+        //opens/closes the inventory
         if (Input.GetKeyDown("i"))
         {
             if (inventoryOpen == false)
@@ -83,6 +91,7 @@ public class mainInventory : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        //allows the player to place items on the token at the end of the game (once prompted to by the podium)
         if (collision.gameObject.transform.parent.gameObject == endingPodium)
         {
             tokenInstruction.SetActive(true);
@@ -109,6 +118,7 @@ public class mainInventory : MonoBehaviour
 
     void updateUI()
     {
+        //clears all current UI images so that there are no double-ups when new ones are added
         hideAllImages();
         //for each item in the list, shows it in the inventory slots on the UI
         for (int i = 0; i < collectedItems.Count; i++)
@@ -122,12 +132,13 @@ public class mainInventory : MonoBehaviour
     }
 
 
-    //upon starting, hides the UI images of each item
+    //hides the UI images of each item (upon starting + every time UI is updated + once tokens are placed on podium)
     void hideAllImages()
     {
         foreach (var i in inventoryImages) { i.gameObject.SetActive(false); }
     }
 
+    //called from Update
     //shows tokens on the podium + starts move to ending screen
     void TokenEnding()
     {
@@ -136,10 +147,11 @@ public class mainInventory : MonoBehaviour
         tokenInstruction.SetActive(false);
         podiumTokens.SetActive(true);
 
-        StartCoroutine(WaitForTokens(2.5f));
+        StartCoroutine(WaitForTokens(2f));
         
     }
 
+    //called from TokenEnding -> waits so that the player can see the tokens being placed, then transitions to ending scene
     IEnumerator WaitForTokens(float time)
     {
         Debug.Log("about to wait in mainInventory");

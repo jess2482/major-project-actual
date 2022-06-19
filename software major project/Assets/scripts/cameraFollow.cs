@@ -8,8 +8,9 @@ public class cameraFollow : MonoBehaviour
 
     GameObject thePlayer;
     private Transform playerTransform;
-    public float offset=0f;
 
+    //not used for now, but could be used later to change where the playerCharacter is in the camera's view
+    public float offset=0f; 
 
     void Start()
     {
@@ -25,11 +26,12 @@ public class cameraFollow : MonoBehaviour
         //storing camera's current position in temporary variable
         Vector3 cameraPosition = transform.position;
 
-        //sets the camera's position to always match/align with the player's
+        //sets the temporary position to always match/align with the player's
         cameraPosition.x = playerTransform.position.x;
         cameraPosition.x += offset;
         cameraPosition.y = playerTransform.position.y;
-        //sets the camera's position back to new values (because 'transform.position.x' cannot be accessed directly)
+
+        //sets the camera's position to temporary values (because 'transform.position.x' cannot be accessed directly)
         transform.position = cameraPosition;
     }
 }

@@ -6,7 +6,7 @@ public class interactionSystem : MonoBehaviour
 {
     //script attached to playerCharacter in MazeMinigame
 
-    bool itemDetected =false;
+    bool itemDetected = false;
     public GameObject detectedItem;
 
 

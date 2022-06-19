@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     {
         managerScript = FindObjectOfType<wholeGameManager>();
 
+        //if the player has just left a minigame, loads the player in a similar position to that minigame's NPC/box
         if (managerScript.mostRecentScene == 2)
         {
             this.gameObject.transform.position = new Vector3(12, 4, 0);
@@ -42,7 +43,8 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("speed", movement.sqrMagnitude);
 
         //disables the 'move with the arrow keys' instruction once the player starts moving
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || 
+            Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
         {
             Destroy(instructionsImage);
         }

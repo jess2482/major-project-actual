@@ -7,7 +7,7 @@ public class playerInteraction : MonoBehaviour
 {
     //NOT USING THIS SCRIPT ANYMORE
 
-    public Image interactionNotif;
+    /*public Image interactionNotif;
     public dialogue conversation;
     bool interaction;
 
@@ -42,5 +42,5 @@ public class playerInteraction : MonoBehaviour
         //makes the alert disappear again once the player moves away
         interactionNotif.gameObject.SetActive(false);
         interaction = false;
-    }
+    }*/
 }

@@ -38,7 +38,7 @@ public class countdownTimer : MonoBehaviour
         displayTime(timeLeft);
     }
 
-
+    //called from Update
     void displayTime(float timeToDisplay) 
     {
         //because deltaTime will cause the time to go slightly below zero, ensures GUI doesn't glitch/display that

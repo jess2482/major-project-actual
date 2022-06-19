@@ -66,3 +66,6 @@ TagManager:
   - name: raindrop
     uniqueID: 45370851
     locked: 0
+  - name: finalToken
+    uniqueID: 4016082299
+    locked: 0

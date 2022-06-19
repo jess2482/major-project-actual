@@ -31,7 +31,7 @@ public class inventorySystem : MonoBehaviour
         }
     }
 
-
+    //called from interactionSystem script
     //every time an item is picked up, adds item to the list + disables the item + resets the UI 
     public void pickUpItem(GameObject item)
     {
@@ -41,7 +41,7 @@ public class inventorySystem : MonoBehaviour
         updateUI();
     }
 
-
+    //called from pickUpItem function
     void updateUI()
     {
         hideAllImages();
@@ -56,8 +56,7 @@ public class inventorySystem : MonoBehaviour
         }
     }
 
-
-    //upon starting, hides the UI images of each item
+    //hides the UI images of each item (upon starting + whenever UI is being updated)
     void hideAllImages() {
         foreach (var i in inventoryImages) { i.gameObject.SetActive(false); }
     }

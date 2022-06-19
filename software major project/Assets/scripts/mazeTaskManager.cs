@@ -24,7 +24,7 @@ public class mazeTaskManager : MonoBehaviour
         winScreen.SetActive(false);
         loseScreen.SetActive(false);
 
-        //stops player from moving until the game starts
+        //stops player from moving until the minigame starts
         playerRigidbody = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
         playerRigidbody.constraints = RigidbodyConstraints2D.FreezePosition;
     }
@@ -33,7 +33,7 @@ public class mazeTaskManager : MonoBehaviour
     //controls the game's status (not started / won / lost)
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && notStartedYet == true)
         {
             startGame();
         }
@@ -49,8 +49,7 @@ public class mazeTaskManager : MonoBehaviour
 
     }
 
-
-    //before the game has started, freezes the player's position and shows the initial instruction screen
+    //once the game has started, unfreezes the player's position and hides the initial instruction screen
     void startGame()
     {
         Debug.Log("game starting...");
@@ -61,7 +60,7 @@ public class mazeTaskManager : MonoBehaviour
         playerRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
-
+    //called from Update
     //once the game has been won, freezes the player's position and shows the winning screen
     void gameWon()
     {
@@ -73,7 +72,7 @@ public class mazeTaskManager : MonoBehaviour
         taskCanvas.SetActive(false);
     }
 
-
+    //called from Update
     //once the game has been lost, freezes the player's position and shows the losing screen, with an option to restart
     void gameLost()
     {

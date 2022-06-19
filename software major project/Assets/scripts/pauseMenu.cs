@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class pauseMenu : MonoBehaviour
 {
-    //script attached to pauseMenu in MazeMinigame
+    //script attached to pauseMenu in MainScene, MazeMinigame, and RainMinigame
 
     public static bool gameIsPaused = false;
     public static bool instructionsOpen = false;
@@ -17,13 +17,14 @@ public class pauseMenu : MonoBehaviour
 
     private void Start()
     {
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
         currentScene = SceneManager.GetActiveScene().buildIndex;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
+        //opens/closes the pause menu when player presses P
         if (Input.GetKeyDown("p"))
         {
             if (gameIsPaused == true)
@@ -44,6 +45,7 @@ public class pauseMenu : MonoBehaviour
             }
         }
 
+        //shifts between pause menu + instruction screen upon player input
         if (Input.GetKeyDown("a"))
         {
             if (gameIsPaused == true || instructionsOpen == true)
@@ -60,6 +62,7 @@ public class pauseMenu : MonoBehaviour
         }
     }
 
+    //called from Update
     //closes the pause menu
     void ResumeGame()
     {
@@ -71,6 +74,7 @@ public class pauseMenu : MonoBehaviour
         gameIsPaused = false;
     }
 
+    //called from Update
     //opens the pause menu
     void PauseGame()
     {
@@ -80,16 +84,19 @@ public class pauseMenu : MonoBehaviour
 
         //freezes the game (stops time) while the menu is open
         Time.timeScale = 0f;
+
         gameIsPaused = true;
         instructionsOpen = false;
     }
 
+    //called from Update
     void RestartScene()
     {
         Debug.Log("loading game");
         SceneManager.LoadScene(currentScene);
     }
 
+    //called from Update
     void ShowInstructions()
     {
         pauseMenuUI.SetActive(false);

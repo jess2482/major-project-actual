@@ -24,7 +24,7 @@ public class dialogueManager : MonoBehaviour
     }
 
 
-    //called from playerInteraction script
+    //called from NPC[n]interaction scripts (n = NPC number)
     public void startDialogue(dialogue conversation, Queue<string> sentences, int npc)
     {
 
@@ -41,6 +41,7 @@ public class dialogueManager : MonoBehaviour
 
         if (Input.GetKeyDown("space"))
         {
+            //ensures that the player can use the box to move to a minigame once an interaction with the relevant NPC has occurred 
             if (npc == 2)
             {
                 FindObjectOfType<levelLoader>().npc2interaction = true;
@@ -60,7 +61,6 @@ public class dialogueManager : MonoBehaviour
                 //stops the player from moving while the conversation is still in progress
                 playerRigidbody.constraints = RigidbodyConstraints2D.FreezePosition;
 
-                Debug.Log("dialogue should show");
                 //textbox appears (if not already visible) and conversation begins or moves to the next line
                 FindObjectOfType<NPC1interaction>().interactionNotif.enabled = false;
                 textbox.enabled = true;
@@ -70,13 +70,13 @@ public class dialogueManager : MonoBehaviour
             }
         }
 
+        //allows the player to leave the conversation
         if (Input.GetKeyDown("x"))
         {
             endDialogue();
             return;
         }
     }
-
 
     public void displayNextSentence(Queue<string> sentences)
     {
@@ -85,7 +85,6 @@ public class dialogueManager : MonoBehaviour
         //changes the text on the screen to be the next sentence
         dialogueText.text = currentSentence;
     }
-
 
     void endDialogue()
     {

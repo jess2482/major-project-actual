@@ -24,7 +24,7 @@ public class sunSpawner : MonoBehaviour
         remainingXPositions.AddRange(xPositions);
         remainingYPositions.AddRange(yPositions);
 
-        //starts the game with three sun objects
+        //starts the game with two sun objects
         for (int i = 0; i < 2; i++)
         {
             SpawnNewSun();
@@ -35,6 +35,8 @@ public class sunSpawner : MonoBehaviour
     public void SpawnNewSun()
     {
         FindSunPosition();
+
+        //once a new sun position is decided, checks whether that position is blocked by anything (object, another sun, etc.)
         Collider2D movementBlocked = Physics2D.OverlapCircle(new Vector2(xPos, yPos), 0.2f);
         if (!movementBlocked)
         {
@@ -46,6 +48,7 @@ public class sunSpawner : MonoBehaviour
         }
     }
 
+    //called from SpawnNewSun
     void FindSunPosition()
     {
         //finds random position on the grid (in terms of x/y) + assigns it to the new sun
@@ -57,7 +60,7 @@ public class sunSpawner : MonoBehaviour
         yPos = remainingYPositions[rand];
         remainingYPositions.RemoveAt(rand);
 
-        //resets the position lists
+        //resets the position lists (so future suns can be placed in the same position)
         remainingXPositions = new List<float>();
         remainingXPositions.AddRange(xPositions);
 

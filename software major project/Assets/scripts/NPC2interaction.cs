@@ -31,6 +31,7 @@ public class NPC2interaction : MonoBehaviour
         //if the player collides with the object, it triggers the dialogueManager
         if (interaction == true)
         {
+            //different dialogue depending on whether or not the player has won the minigame
             if (managerScript.mazeMinigameWon == false)
             {
                 FindObjectOfType<dialogueManager>().startDialogue(initialConversation, NPC2sentences, 2);
@@ -43,10 +44,8 @@ public class NPC2interaction : MonoBehaviour
         }
     }
 
-    //when something touches the object this is attached to
     void OnCollisionEnter2D(Collision2D collision)
     {
-        //if the object is the player, makes the alert appear
         if (collision.gameObject.tag == "Player")
         {
             interactionNotif.gameObject.SetActive(true);

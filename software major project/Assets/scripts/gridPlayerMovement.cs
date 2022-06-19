@@ -14,24 +14,25 @@ public class gridPlayerMovement : MonoBehaviour
     public LayerMask stopsMovement;
     rainTaskManager taskScript;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         //stops the movePoint from being a player of the playerCharacter as soon as the game starts
         //(prevents the movePoint from constantly moving when the player moves, while still keeping the hierarchy organised)
         movePoint.parent = null;
+
         taskScript = FindObjectOfType<rainTaskManager>();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         //moves the player character to the point it's meant to go to
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed*Time.deltaTime);
 
-        /*ensures that a new grid destination can only be inputted if:
-            - the initial instruction screen is no longer showing
-            - the character has already reached its destination*/
+        //ensures that a new grid destination can only be inputted if:
+        //    - the minigame is in play
+        //    - the character has already reached its destination
         if (taskScript.notStartedYet == false && taskScript.winGame == false)
         {
             if (Vector3.Distance(transform.position, movePoint.position) <= 0.01f)
@@ -42,6 +43,7 @@ public class gridPlayerMovement : MonoBehaviour
 
     }
 
+    //called from Update function
     void GetMovementInput()
     {
         //checks for arrow key input + sets the place for the player character to move to

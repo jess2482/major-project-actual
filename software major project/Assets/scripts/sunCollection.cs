@@ -21,6 +21,7 @@ public class sunCollection : MonoBehaviour
         }
     }
 
+    //makes sure UI always matches the player's score
     void displayScore(int score)
     {
         scoreText.text = string.Format("{0}", score);
@@ -28,6 +29,7 @@ public class sunCollection : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        //when player moves to collect a sun, replaces that sun with a new one in a different position + adds to player's score
         if (collision.gameObject.tag == "item")
         {
             Destroy(collision.gameObject);
@@ -39,6 +41,7 @@ public class sunCollection : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        //decreases player's score when hit by a raindrop
         if (collision.gameObject.tag == "raindrop")
         {
             if (sunScore > 0)

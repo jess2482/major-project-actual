@@ -31,10 +31,10 @@ public class NPC1interaction : MonoBehaviour
         }
     }
 
-    //when something touches the object this is attached to
+
     void OnCollisionEnter2D(Collision2D collision)
     {
-        //if the object is the player, makes the alert appear
+        //if this NPC collides with the player, makes the alert appear + allows interaction
         if (collision.gameObject.tag == "Player")
         {
             interactionNotif.gameObject.SetActive(true);

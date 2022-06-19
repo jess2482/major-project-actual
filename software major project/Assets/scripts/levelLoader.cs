@@ -6,31 +6,33 @@ using UnityEngine.SceneManagement;
 public class levelLoader : MonoBehaviour
 {
     //script is attached to the InterfaceManager in each scene
-    //(also attached to playerCharacter in MainScene? -> if there's issues, check that)
+    //(also attached to playerCharacter in MainScene)
 
     int sceneToLoad;
     public Animator transition;
     float transitionDelay = 1.3f;
 
     public GameObject moveCheckUI;
-    bool checkingMovement = false; //set to true when the player is being asked whether to move or not
+    bool checkingMovement = false; //set to true when the player is being asked whether to move to minigame or not
     Collision2D boxCollision;
 
+    //used to control the final end of the game
     public bool mazeGameWon;
     public bool rainGameWon;
     public bool endGame = false;
 
+    //used to control whether the player can access a minigame through its box
     public bool npc2interaction = false;
     public bool npc3interaction = false;
 
-    // Update is called once per frame
+
     void Update()
     {
         //for transition FROM opening screen TO main scene
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
             sceneToLoad = 1;
-            //then loads the new scene if space bar is pressed
+
             if (Input.GetKeyDown("space"))
             {
                 Debug.Log("space key pressed");
@@ -41,7 +43,7 @@ public class levelLoader : MonoBehaviour
         //for transition FROM main scene TO any minigame
         if (checkingMovement == true)
         {
-            //MAY BE A LATER ISSUE HERE with never setting checkingMovement back to false, but should be ok since scene changes
+            //player is presented with options + can either move to minigame or stay in main scene
             if (Input.GetKeyDown("space"))
             {
                 Time.timeScale = 1f;
@@ -60,13 +62,11 @@ public class levelLoader : MonoBehaviour
         {
             sceneToLoad = 1;
 
-            //then loads the new scene if space bar is pressed once the game is over
+            //loads the new scene if space bar is pressed once the game is over
             if (Input.GetKeyDown("space"))
             {
-                Debug.Log("space pressed (to go back to main)");
                 if (mazeGameWon == true)
                 {
-                    Debug.Log("about to load scene");
                     LoadScene();
                 }
             }
@@ -77,18 +77,16 @@ public class levelLoader : MonoBehaviour
         {
             sceneToLoad = 1;
 
-            //then loads the new scene if space bar is pressed once the game is over
             if (Input.GetKeyDown("space"))
             {
                 if (rainGameWon == true)
                 {
-                    //FindObjectOfType<rainMinigameManager>().DataTransfer();
                     LoadScene();
                 }
             }
         }
 
-        //transition FROM main scene (or technically any scene but shouldn't be called) TO ending screen
+        //transition FROM main scene (or technically any scene but shouldn't be called unless in main scene) TO ending screen
         if (endGame == true)
         {
             sceneToLoad = 4;
@@ -130,8 +128,8 @@ public class levelLoader : MonoBehaviour
     public void LoadScene()
     {
         Debug.Log("loading scene");
-        //FindObjectOfType<wholeGameManager>().DataTransfer();
 
+        //records the scene that the player is moving out of, to be used in NPC interactions
         if (SceneManager.GetActiveScene().buildIndex != 0)
         {
             FindObjectOfType<wholeGameManager>().mostRecentScene = SceneManager.GetActiveScene().buildIndex;
@@ -145,6 +143,7 @@ public class levelLoader : MonoBehaviour
     IEnumerator LoadLevel(int levelIndex) 
     {
         Debug.Log(levelIndex);
+
         //plays the transition animation
         transition.SetTrigger("startTransition");
 
